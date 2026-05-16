@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfume Collection — Beauty Secret</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+
+    :root {
+      --pink: #d98ca3;
+      --pink-light: #f1c8d2;
+      --pink-pale: #fdf4f6;
+      --black: #111;
+      --gray: #888;
+      --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: white;
+      color: var(--black);
+    }
+
+    /* ── HEADER ── */
+
+    header {
+      width: 100%;
+      background: white;
+      border-bottom: 1px solid #f0e8eb;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar {
+      max-width: 1400px;
+      margin: auto;
+      padding: 22px 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 56px;
+      font-weight: 300;
+      letter-spacing: 18px;
+      color: var(--black);
+      line-height: 1;
+      text-align: center;
+    }
+
+    .logo p {
+      margin-top: 6px;
+      letter-spacing: 5px;
+      font-size: 11px;
+      font-weight: 300;
+      text-transform: uppercase;
+      color: var(--pink);
+      text-align: center;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 36px;
+      border: 1px solid rgba(0,0,0,0.25);
+      background: transparent;
+      color: var(--black);
+      text-decoration: none;
+      font-family: 'Jost', sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      transition: all var(--transition);
+    }
+
+    .back-btn:hover {
+      background: var(--black);
+      color: white;
+      border-color: var(--black);
+    }
+
+    /* ── COLLECTION HERO LABEL ── */
+
+    .collection-header {
+      text-align: center;
+      padding: 90px 30px 60px;
+    }
+
+    .collection-label {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 16px;
+    }
+
+    .collection-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 58px;
+      font-weight: 300;
+      letter-spacing: 4px;
+      margin-bottom: 18px;
+    }
+
+    .header-line {
+      width: 48px;
+      height: 1px;
+      background: var(--pink);
+      margin: 0 auto;
+    }
+
+    /* ── GRID ── */
+
+    .collection {
+      padding: 60px 50px 130px;
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2px;
+    }
+
+    .card {
+      background: white;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card-img-wrap {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card:hover img {
+      transform: scale(1.05);
+    }
+
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0);
+      transition: background var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card:hover .card-overlay {
+      background: rgba(0,0,0,0.25);
+    }
+
+    .card-order-hover {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all var(--transition);
+      padding: 14px 40px;
+      border: 1px solid white;
+      background: transparent;
+      color: white;
+      font-family: 'Jost', sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .card:hover .card-order-hover {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card-content {
+      padding: 24px 20px 28px;
+      text-align: center;
+      border: 1px solid #f0e8eb;
+      border-top: none;
+    }
+
+    .card-tag {
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 8px;
+    }
+
+    .card-content h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+
+    .card-content p {
+      font-size: 12px;
+      font-weight: 300;
+      color: #999;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    .price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: 2px;
+      color: var(--black);
+      margin-bottom: 16px;
+    }
+
+    .buy-btn {
+      display: inline-block;
+      padding: 10px 32px;
+      border: 1px solid rgba(0,0,0,0.2);
+      background: transparent;
+      color: var(--black);
+      text-decoration: none;
+      font-family: 'Jost', sans-serif;
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      transition: all var(--transition);
+    }
+
+    .buy-btn:hover {
+      background: var(--black);
+      color: white;
+      border-color: var(--black);
+    }
+
+    /* ── FOOTER ── */
+
+    footer {
+      background: var(--black);
+      color: white;
+      text-align: center;
+      padding: 70px 20px;
+    }
+
+    footer h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px;
+      font-weight: 300;
+      letter-spacing: 18px;
+      margin-bottom: 12px;
+    }
+
+    .footer-sub {
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 36px;
+    }
+
+    .footer-divider {
+      width: 40px;
+      height: 1px;
+      background: #333;
+      margin: 0 auto 30px;
+    }
+
+    footer p {
+      color: #555;
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 2px;
+    }
+
+    /* ── RESPONSIVE ── */
+
+    @media (max-width: 900px) {
+      .collection-header h2 {
+        font-size: 42px;
+      }
+      .collection {
+        padding: 40px 20px 80px;
+      }
+      .grid {
+        gap: 20px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="navbar">
+      <div class="logo">
+        <h1>BS</h1>
+        <p>Beauty Secret</p>
+      </div>
+      <a href="index.html" class="back-btn">← Kthehu Mbrapa</a>
+    </div>
+  </header>
+
+  <!-- COLLECTION TITLE -->
+  <div class="collection-header">
+    <p class="collection-label">Ekskluzive</p>
+    <h2>Luxury Perfume Collection</h2>
+    <div class="header-line"></div>
+  </div>
+
+  <!-- GRID -->
+  <section class="collection">
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-img-wrap">
+          <img src="p1.png" alt="Tom Ford Bitter Peach">
+          <div class="card-overlay">
+          </div>
+        </div>
+        <div class="card-content">
+          <p class="card-tag">Extrait De Parfum </p>
+          <h3>TOM FORD</h3>
+          <p>Bitter Peach Extrait</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img-wrap">
+          <img src="p2.png" alt="intense cafe ">
+          <div class="card-overlay">
+            
+          </div>
+        </div>
+        <div class="card-content">
+          <p class="card-tag">Eau de Parfum</p>
+          <h3>MONTALE PARIS</h3>
+          <p>Intense Cafe</p>
+
+          
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img-wrap">
+          <img src="p3.png" alt="Giorgio armani">
+          <div class="card-overlay">
+          </div>
+        </div>
+        <div class="card-content">
+          <p class="card-tag">Extrait De Parfum</p>
+          <h3>GIORGIO ARMANI</h3>
+          <p>Gorgio Armani SI</p>
+          
+         
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img-wrap">
+          <img src="p4.png" alt="Chanel">
+          <div class="card-overlay">
+            
+          </div>
+        </div>
+        <div class="card-content">
+          <p class="card-tag">Extrait De Parfum</p>
+          <h3>CHANEL</h3>
+          <p>Chance Chanel</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img-wrap">
+          <img src="p5.png">
+          <div class="card-overlay">
+          </div>
+        </div>
+        <div class="card-content">
+          <p class="card-tag">Extrait De Parfum</p>
+          <h3>GIORGIO ARMANI</h3>
+          <p>My Way</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img-wrap">
+          <img src="p6.png">
+          <div class="card-overlay">
+          </div>
+        </div>
+        <div class="card-content">
+          <p class="card-tag">Extrait De Parfum</p>
+          <h3>TOM FORD</h3>
+          <p>Lost Cherry </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img-wrap">
+          <img src="p7.png">
+          <div class="card-overlay">
+          </div>
+        </div>
+        <div class="card-content">
+          <p class="card-tag">Eau De Parfum</p>
+          <h3>VANILLA POWDER</h3>
+          <p>Matiere Premiere</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <h3>BS</h3>
+    <p class="footer-sub">Beauty Secret</p>
+    <div class="footer-divider"></div>
+    <p>Beauty Secret © 2025</p>
+  </footer>
+
+</body>
+</html>
